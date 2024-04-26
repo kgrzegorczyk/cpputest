@@ -21,12 +21,12 @@ add_library(CppUTest
 )
 
 #[[Set CPP_PLATFORM in a parent CMakeLists.txt if reusing one of the provided platforms, else supply the missing definitions]]
-if (CPP_PLATFORM)
+if ((NOT CPP_PLATFORM STREQUAL "") AND (NOT CPP_PLATFORM STREQUAL "CUSTOM"))
     target_sources(CppUTest
         PRIVATE
             ../Platforms/${CPP_PLATFORM}/UtestPlatform.cpp
     )
-endif(CPP_PLATFORM)
+endif()
 
 #[[Arrange for the include directory to be added to the include paths of any CMake target depending on CppUTest.]]
 target_include_directories(CppUTest
